@@ -1,0 +1,759 @@
+<html>
+  <head>
+    <title>IFT2255 DM2 Équipe 7</title>
+    <style type="text/css">
+      table
+      {
+          border: outset 2px black;
+          border-collapse: collapse;
+      }
+      th
+      {
+          border-bottom: double 2px black;
+      }
+      td
+      {
+          border-bottom: solid 1px black;
+      }
+      .first_col
+      {
+          border-right: double 2px black;
+      }
+      .diag{width: 70%;}
+      .diag-class{width: 100%;}
+      h2{margin-top: 2em;}
+    </style>
+  </head>
+  <body>
+    <div style="width:80%; margin:auto">
+      <h1 style="text-align: center;">IFT 2255 - Devoir 3</h1></br>
+      <h2>Information générale</h2>
+      <h3>Équipe 7</h3>
+      <p>
+        <span style="font-weight: bold;">Nom: </span>Carlos Paz
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>1498
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>carlos.antonio.paz@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">Temps mis: </span>27 heures
+      </p>
+      <p>
+        <span style="font-weight: bold;">Nom: </span>Daniel Polotski
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>4693
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>daniel.polotski@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">Temps mis: </span>25 heures
+      </p>
+      <p>
+        <span style="font-weight: bold;">Nom: </span>Elise Zheng
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>8416
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>elise.zheng@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">Temps mis: </span>26 heures
+      </p>
+  </br>
+      <h2>Distribution des tâches</h2>
+      <p>
+        <span style="font-weight: bold;">Soumetteur: </span>someone
+      </p>
+      <table cellpadding="7px">
+        <thead>
+          <tr>
+            <th class="first_col">Tâche</th>
+            <th>
+              Carlos
+            </th>
+            <th>
+              Daniel
+            </th>
+            <th>
+              Elise
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="first_col">
+              Mise à jour des artéfacts
+            </td>
+            <td>
+              Diagramme de classes, Diagrammes de séquences (65%)
+            </td>
+            <td>
+              Diagramme de classes (20%)
+            </td>
+            <td>
+              Diagramme de classes (15%)
+            </td>
+          </tr>
+          <tr>
+            <td class="first_col">
+              Implémentation en Java
+            </td>
+            <td>
+              7 classes (30%)
+            </td>
+            <td>
+              8 classes (35%)
+            </td>
+            <td>
+              8 classes (35%)
+            </td>
+          </tr>
+          <tr>
+            <td class="first_col">
+              Tests unitaires
+            </td>
+            <td>
+              2 méthodes (33%)
+            </td>
+            <td>
+              2 méthodes (33%)
+            </td>
+            <td>
+              2 méthodes (33%)
+            </td>
+          </tr>
+          <tr>
+            <td class="first_col">
+              Livraison et documentation
+            </td>
+            <td>
+              JavaDoc (30%)
+            </td>
+            <td>
+              Manuel de l'utilisateur, JavaDoc (40%)
+            </td>
+            <td>
+              JavaDoc (30%)
+            </td>
+          </tr>
+        </tbody>
+    </table></br></br>
+    <b>Graphes BitBucket: </b></br></br>
+    <img src="Images/Devoir 3 - BitBucket Graph 1.png" alt="Graphe BitBucket n.1" class="diag"></br></br>
+    <img src="Images/Devoir 3 - BitBucket Graph 2.png" alt="Graphe BitBucket n.2" class="diag">
+  </br></br>
+    <!-- <h2>Hypothèses</h2>
+      <ul>
+        <li></li>
+      </ul> -->
+    <!----------------------------- WF 1 ------------------------------->
+    <h2>Workflow 1 : Exigences</h2>
+
+    <h3>Glossaire :</h3>
+    <div style="border: solid 1px; width: 80%; margin: auto; padding: 10px; line-height: 1.4em;">
+      <!--<span style="font-weight: bold;">Nouveau professionnel: </span>Professionnel pas encore enregistrer comme tel avec le gym</br>-->
+      <span style="font-weight: bold;">Adhérer: </span>l'acte de devenir membre du gym</br>
+      <span style="font-weight: bold;">Agent: </span>employé du gym et intermédiaire entre celui-ci et les clients</br>
+      <!--<span style="font-weight: bold;">Capacité maximale: </span>nombre maximal de membres pouvant assister à une séance de service</br>-->
+      <span style="font-weight: bold;">Centre de Données: </span>structure de données interne contenant toutes les informations sur les membres, les professionnels et les inscriptions aux séances</br>
+      <span style="font-weight: bold;">Client: </span>personne ayant déjà adhéré au gym (membre/professionnel)</br>
+      <span style="font-weight: bold;">Code de service: </span>numéro d'identification unique associé à un service. Ce code a 7 chiffres</br>
+      <span style="font-weight: bold;">Confirmer inscription: </span>action de vérifier l'inscription du membre à la séance à laquelle il demande accès</br>
+      <span style="font-weight: bold;">Consultation: </span>service offert par un professionnel</br>
+      <span style="font-weight: bold;">Désabonner: </span>l'acte de supprimer les informations personnelles d'un membre ou d'un professionnel et libérer le numéro</br>
+      <span style="font-weight: bold;">Entrainement: </span>service offert par un professionnel</br>
+      <span style="font-weight: bold;">Inscription à un service: </span>action de réserver sa place pour une séance de service</br>
+      <!--<span style="font-weight: bold;">Nouveau membre:</span> personne n'ayant pas encore adhéré au gym, futur membre</br>
+      <span style="font-weight: bold;">Nouveau professionnel: </span>expert en exercice physique ou expert de la santé physique pas encore enregistré avec le gym</br>-->
+      <span style="font-weight: bold;">Nouveau client: </span>personne n'ayant pas encore adhéré au gym (potentiel futur membre/professionnel)</br>
+      <span style="font-weight: bold;">Numéro: </span>synonyme du numéro unique</br>
+      <span style="font-weight: bold;">Numéro invalide: </span>numéro unique associé à aucun membre ou professionnel</br>
+      <span style="font-weight: bold;">Numéro unique: </span>numéro d'identification unique fourni à un membre ou à un professionel suite à son inscription au gym. Ce numéro a 9 chiffres</br>
+      <span style="font-weight: bold;">Membre:</span> client ayant un accès illimité à la salle des machines, la piscine et les multisport.
+      Ils ont également droit à des entrainements et consultations illimités avec des professionnels</br>
+      <span style="font-weight: bold;">Membre suspendu: </span>membre n'ayant plus d'accès au gym, son numéro est 'flaggé' parce que des frais d'adhésion sont dus</br>
+      <span style="font-weight: bold;">Professionnel: </span>expert en exercice physique ou expert de la santé enregistré avec le gym unique</br>
+      <span style="font-weight: bold;">Répertoire de Services: </span>fichier contenant toutes les informations sur les séances disponibles</br>
+      <span style="font-weight: bold;">Séance: </span>service offert par un professionnel pendant une plage horaire spécifique</br>
+      <span style="font-weight: bold;">Service: </span>activité fournie par un professionnel</br>
+      <span style="font-weight: bold;">Valider un numéro: </span>action de vérifier qu'un numéro unique est associé à un membre ou à un professionnel</br>
+      <span style="font-weight: bold;">frais d'adhésion: </span>Paiement mensuel devant être effectuer pour avoir accès au gym </br>
+      <span style="font-weight: bold;">TEF: </span>Transfert électronique de fond  </br>
+      <span style="font-weight: bold;">Fichier TEF: </span>Fichier contenant le nom du professionnel, le numéro du professionnel et le montant à lui transférer pour ses services de la semaine </br>
+      <span style="font-weight: bold;">Rapport: </span>Rapport contenant les information sur les comptes payables et décrit la liste de tous les professionnels qui doivent être payé pour cette semaine-là. De plus, ce rapport contient aussi le nombre total de professionnels qui ont fourni des services cette semaine-là, le nombre total de services et le total des frais.</br>
+      <span style="font-weight: bold;">RnB: </span>Services comptables (tierce parite)  </br>
+      <span style="font-weight: bold;">Système information RnB: </span>Système en charge du traitement des frais d'adhésion et de la suspension/rétablissement membres  </br>
+      <span style="font-weight: bold;">Réception: </span> Endroit où se présente le client pour créer/MAJ/supprimer son compte ou ses services, ainsi que pour s'inscrire à des séances, en intéragissant avec l'agent</br>
+      <span style="font-weight: bold;">Requête: </span>Demande effectuée au système afin d’obtenir certaines informations</br>
+      <span style="font-weight: bold;">Informations personnelles: </span>Informations fournies par les clients lors de l’adhésion au #GYM</br>
+      <span style="font-weight: bold;">Numéro de membre : </span>Un numéro à neuf chiffres unique qui identifie chaque membre</br>
+      <span style="font-weight: bold;">Numéro de professionel : </span>un nombre de neuf chiffres attribué à chaque professionnel</br>
+      <span style="font-weight: bold;">Salle des machines, piscine, multisport : </span> salle avec équipements à disposition des membres, où ils peuvent s'exercer</br>
+      <span style="font-weight: bold;">Experts en exercice physique : </span> professionnels du gym qui sont des entraineur personnel, de yoga ou de cross-fit</br>
+      <span style="font-weight: bold;">Experts de la santé physique : </span> professionnels du gym qui sont nutritionnistes, physiothérapeutes ou massothérapeutes</br>
+
+      </div>
+
+    <h3>Diagramme des cas d'utilisation UML :</h3>
+    <p>Voici le <a href="Exigence/Diagramme Cas d'utilisation\cas-utilisation.vpp">lien</a> vers le projet VP contenant le diagramme des CU. </p>
+        <p>Image du diagramme :</p>
+        <img src="Exigence/Diagramme Cas d'utilisation/cas-utilisation.jpg" alt="Diagramme UML des cas d'utilisation" class="diag">
+
+    <h3>Cas d'utilisation :</h3>
+    <ol>
+      <!-- 1. Adhérer -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Adhésion d'un professionnel au gym
+          <span style="font-weight: bold;">But :</span> Adéhérer de #GYM pour avoir accès aux différents services
+          <span style="font-weight: bold;">Préconditions :</span> Le système est disponible et ne comporte pas encore le membre
+          <span style="font-weight: bold;">Acteurs :</span> Nouveau client professionnel (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Le nouveau professionnel se présente à la réception
+              2. Le nouveau professionnel demande la création d'un dossier
+              3. L'agent à la réception collecte les informations personnelles du nouveau professionnel
+              4. L'agent entre ces informations sur son ordinateur
+              5. L'agent confirme avec le nouveau professionnel qu'il veut procédé avec la création du dossier
+              6. Le nouveau professionnel confirme que oui
+              7. L'agent prends les informations personnelles nécessaires du professionnel
+              9. Le système assigne un numéro unique au dossier du membre
+              10. L'agent donne le numéro unique au professionnel
+          <span style="font-weight: bold;">Scénarios alternatifs :</span> Aucun
+          <span style="font-weight: bold;">Postconditions :</span> Le nouveau professionnel a été ajouté au système
+      </pre></li></br>
+
+      <!-- 2. Adhérer -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Adhésion d'un membre au gym
+          <span style="font-weight: bold;">But :</span> Adéhérer de #GYM pour avoir accès aux différents services
+          <span style="font-weight: bold;">Préconditions :</span> Le système est disponible et ne comporte pas encore le membre
+          <span style="font-weight: bold;">Acteurs :</span> Nouveau client membre (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Le nouveau client se présente à la réception
+              2. Le nouveau client demande la création d'un dossier
+              3. L'agent à la réception collecte les informations personnelles du nouveau client
+              4. L'agent entre ces informations sur son ordinateur
+              5. L'agent confirme avec le nouveau client qu'il veut procédé avec la création du dossier
+              6. Le nouveau client confirme que oui
+              7. L'agent prends les informations personnelles nécessaires du client, et suit la procédure du paiement des frais d'adhésion avec le système informatique de RnB
+              8. Le Centre de Données #GYM reçoit la confirmation du système informatique de RnB que les frais d'adhésion ont été payés
+              9. Le système assigne un numéro unique au dossier du membre
+              10. L'agent donne le numéro unique au client, désormais membre
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+              7a.1 Le Centre de Données #GYM reçoit la confirmation du système informatique de RnB que le paiement n'a pas fonctionné.
+              7a.2 L'agent avise le nouveau client de l'échec du paiement
+              7a.3 Étape 4 si le client désire payer de nouveau. Sinon le client quitte, fin du CU.
+          <span style="font-weight: bold;">Postconditions :</span> Le nouveau client a été ajouté au système
+      </pre></li></br>
+
+      <!-- 3. Maintenance compte client -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Maintenance d'un compte
+          <span style="font-weight: bold;">But :</span> Mise à jour/suppression d'un compte client (membre ou professionnel) de #GYM
+          <span style="font-weight: bold;">Préconditions :</span> Le système est disponible et ne comporte pas encore le client
+          <span style="font-weight: bold;">Acteurs :</span> Client (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Le client se présente à la réception
+              2. Le client demande à modifier son dossier
+              3. L'agent demande le numéro unique du client
+              4. Le client lui donne son numéro unique
+              5. L'agent retrouve le dossier du client dans le système et l'affiche
+              6. Le client demande à mettre à jour des informations
+              7. L'agent lui demande les informations à mettre à jour
+              8. Le client donne les informations
+              9. L'agent demande au client de confirmer les modifications
+              10. Le client confirme
+              11. L'agent envoie une requête pour mettre à jour le dossier
+              12. L'agent informe que le dossier a été modifié avec succès
+
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+          5a. Le système indique que le numéro unique entrée est invalide
+              5a.1. L'agent informe le client qu'aucun compte n'est associé à ce numéro unique
+              5a.2. Retour à l'étape 4
+          
+          5b. Le système indique que le compte associé au numéro unique est suspendu
+              5b.1. L'agent demande au client de régler les frais impayés
+          
+          6a Le client demande à l'agent de le désabonner du gym
+              6a.1. L'agent de au client la confirmation qu'il veut la suppression de son dossier
+              6a.2. Le client confirme qu'il veut supprimer son dossier
+              6a.3. L'agent envoie la requête appropriée au système
+              6a.4. Le système supprime toutes inscriptions ou séances de services associées à ce numéro unique
+              6a.5. Le système supprime les informations personnelles
+              6a.6. Le système affiche une confirmation que le client a été supprimé du système
+              6a.7. L'agent confirme au client qu'il est désabonné
+
+          9a. Les informations fournies sont invalides
+              9a.1. L'agent demande au client de revérifier ses informations
+              9a.3. retour à l'étape 8
+
+          10a. Le client demande l'annulation des modifications
+              10a.1 L'agent ne procède pas aux modifications
+          <span style="font-weight: bold;">Postconditions :</span> Modification faite à un dossier client
+          </pre></li></br>
+
+
+      <!-- 4. Acces -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Demande d'accès au gym
+          <span style="font-weight: bold;">But :</span> S'assurer que le client voulant accèder au gym est un membre ou un professionnel
+          <span style="font-weight: bold;">Préconditions :</span> Le système est disponible et comporte le client (CU Inscription au gym)
+          <span style="font-weight: bold;">Acteurs :</span> Client (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Le client se présente à la réception
+              2. L'agent lui demande son numéro unique
+              3. Le client donne son numéro unique
+              4. L'agent entre le numéro unique dans le système
+              5. Le système affiche sur l'écran de l'agent le mot <i>"Validé"</i>
+              6. L'agent ouvre le tourniquet du centre
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+              3.a Le client indiqu'il a oublier son numéro unique
+                  3a.1. L'agent invite a quitter le gym. Le temps de retrouver son numéro unique.
+
+              3b. Le client indique qu'il n'a pas encore reçu son numero unique
+                  3b.1. Appel du CU Création/mise à jour/suppression d'un compte
+
+              5a. Le système affiche <i>"Numéro invalide"</i> sur l'écran de l'agent
+                  5a.1. L'agent indique au client que le numéro unique fourni n'est pas valide
+                  5a.2. Saute à l'étape 2
+
+              5b. Le système affiche "Membre suspendu"
+                  5b.1. L'agent avise le membre du solde dû
+                  5b.2. L'agent suit la procédure du paiements des frais d'adhésion avec le système RnB
+
+              5c. Le système affiche "Membre suspendu"
+                  5c.1. L'agent avise le membre solde dû
+                  5c.2. La personne avise qu'elle ne peut effectuer de paiement pour le moment
+                  5c.3. L'agent invite la personne a quitter le gym
+          <span style="font-weight: bold;">Postconditions :</span> L'état du système reste inchangé
+      </pre></li></br>
+
+      <!-- 5. Inscription seance -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Inscription d'un membre à une séance de service
+          <span style="font-weight: bold;">But :</span> Trouver une séance de service à laquelle le membre veut participer
+          <span style="font-weight: bold;">Préconditions :</span> Le système est disponible et comporte le membre (CU Inscription au gym)
+          <span style="font-weight: bold;">Acteurs :</span> Membre (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Appel du CU Demande d'accès
+                  1.1. Le membre se voit octroyer l'accès au #GYM
+              2. Le membre demande à consulter les séances disponibles
+              3. Appel du CU Consultation du répertoire des séances de services
+              4. L'agent aide le membre a trouver une séance de service à laquelle il veut s'inscrire
+              5. L'agent sélectionne la séance de service en question dans le Répertoire de Services pour la journée
+              6. L'agent utilise son système pour sélectionner l'option <i>Confirmer l'inscription</i>
+              7. Le système confirme qu'il y a de la place disponible pour cette séance
+              8. L'agent demande au client toutes les informations nécessiare à l'incription et les entre dans
+              le système
+              9. L'agent demande la confirmation au membre qu'il souhaite s'inscrire à cette séance
+              10. Le membre confirme que oui
+              11. L'agent demande au client de payer les frais pour les séance
+              12. Le membre paye les frais
+              13. L'agent recois la confirmtion du système RnB que la transaction est passée
+              14. L'agent finalise l'inscription au système
+              15. Le logiciel crée un enregistrement sur le disque avec ces informations
+              16. L'agent confirme au membre son inscription à la séance
+              17. L'agent donne le code service à sept chiffre utilisé lorsque le membre devra confirmer sa présence
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+              1a.1. Le membre se voit refuser l'accès au #GYM
+              1a.2. Fin du CU, départ du client.
+
+              4a. Le membre ne trouve aucun service ou séance de service auquel il veut s'inscrire
+
+              7a. Le système affiche un message d'erreur sur l'écran de l'ordinateur indiquant que la capacité maximale pour cette activité a déja été atteite.
+                  7a.1. Retour à l'étape 3
+
+              10a. Le membre indique que non et demande l'annulation de sa demande
+                  13a.1. L'agent annule l'inscription
+
+              12a. Le membre ne peut payer les frais
+                  12a.1. L'agent annulle l'inscription
+
+              13a. L'agent reçoit un message d'erreur de RnB comme quoi le paiement n'est pas passé
+                  13a.1. L'agent annulle l'inscription
+
+          <span style="font-weight: bold;">Postconditions :</span> Le système contient une confirmation d'inscription du membre à la séance souhaitée
+      </pre></li></br>
+
+      <!-- 6. Consultation répertoire des séances -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Consultation du Répertoire des séances de services
+          <span style="font-weight: bold;">But :</span> Trouver les séances de services offertes pour le même jour
+          <span style="font-weight: bold;">Préconditions :</span> Le système est disponible et comporte le membre (CU Inscription au gym)
+          <span style="font-weight: bold;">Acteurs :</span> Membre (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. L'agent sert du système informatique pour obtenir la liste des séances de services offertes pour le même jour
+              2. Le système affiche la liste des séances
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+              2a. Le système indique qu'aucune séance n'est offerte
+                  2a. 1. L'agent informe le client qu'aucune séance est offerte ce jour-là
+          <span style="font-weight: bold;">Postconditions :</span> Le système est inchangé
+      </pre></li></br>
+
+
+
+      <!-- 7. Creation seance de service -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Créer un service pour un professionnel
+          <span style="font-weight: bold;">But :</span> Ajouter un service au Répertoire des Services
+          <span style="font-weight: bold;">Préconditions :</span> Le professionnel est déjà inscrit (CU Inscription au gym)
+          <span style="font-weight: bold;">Acteurs :</span> Professionnel (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Appel du CU Demande d'accès
+                  1.1. Le professionnel se voit octroyer l'accès au #GYM
+              2. L'agent s'assure que le numéro unique correspond à un professionnel.
+              3. Le professionnel demande l'ajout de son service au Répertoire des Services
+              4. L'agent demande les informations nécessaires à l'ajout d'un service au professionnel
+              5. Le professionnel fournit les informations
+              6. L'agent entre ces informations dans l'ordinateur
+                  5.1. Le professionnel confirme que toutes les données sont valides
+              7. Le système crée un nouvel enregistrement dans le fichier Répertoire des Services
+              8. L'agent indique le code de service associé au service au professionnel
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+              1a.1. Le professionnel se voit refuser l'accès au #GYM
+              1a.2. Le professionnel quitte, fin du CU
+
+              2a. Le numéro unique ne correspond pas à un dossier de professionnel.
+                  2a.1 L'agent informe la personne que ce numéro unique ne correspond pas à un professionnel et demande de revenir avec le bon numéro unique
+          <span style="font-weight: bold;">Postconditions :</span> Le nouveau service est ajouté au Répertoire des Services
+      </pre></li></br>
+
+      <!-- 8. Consultation d'une séance -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Consulter les inscriptions une séance de service
+          <span style="font-weight: bold;">But :</span> Le professionnel peut se renseigner sur le nombre de membres inscrits à sa séance de service
+          <span style="font-weight: bold;">Préconditions :</span> être un professionnel (CU Inscription au gym), prodiguer une séance de service (CU Créer une séance de service), le système est disponbible
+          <span style="font-weight: bold;">Acteurs :</span> Professionnel (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Appel du CU Demande d'accès
+              2. Le professionnel demande à voir les détails d'une de ses séances de service à une date qu'il souhaite
+              3. L'agent demande le code de service associé à sa séance de service
+              4. Le professionnel donne le code de service à l'agent
+              5. L'agent envoie une requête appropriée au Centre de Données
+              6. Le système affiche les informations demandées sur l'écran de l'agent
+              7. L'agent communique au professionnel le nombre d'inscriptions à la séance au jour souhaité
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+              5a. Le service n'appartient pas au professionnel
+              5a.1. L'agent indique au professionnel qu'il n'est pas autorisé à consulter les inscriptions de ce service
+              5a.2. Retour à l'étape 3
+
+              6a. Le code de service fourni ne correspond à aucun service dans le répertoire
+              6a.1. Le système affiche "Aucun service offert"
+              6a.2. L'agent indique au professionnel que ce code ne correspond à aucun service
+
+              6b. Il n'y a aucune séance à la date indiquée dans le répertoire
+              6b.1. Le système affiche "Aucune séance de ce service offerte à cette date"
+              6b.2. L'agent indique au professionnel qu'il n'y a aucune séance à cette date
+          <span style="font-weight: bold;">Postconditions :</span> L'état du système reste inchangé
+      </pre></li></br>
+
+
+      <!-- 9. MAJ de service -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Maintenance d'un service
+          <span style="font-weight: bold;">But :</span> Le professionnel peut mettre à jour ou supprimer un de se services
+          <span style="font-weight: bold;">Préconditions :</span> être un professionnel (CU Inscription au gym), prodiguer une séance de service (CU Créer une séance de service), le système est disponbible
+          <span style="font-weight: bold;">Acteurs :</span> Professionnel (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Appel du CU Demande d'accès
+                  1.1. Le professionnel se voit octroyer l'accès au #GYM
+              2. L'agent s'assure que le numéro unique correspond à un professionnel.
+              3. Le professionnel demande à accéder à la maintenance d'un de ses services
+              4. L'agent demande le code de son service
+              5. Le professionnel lui fournit le code de service
+              6. L'agent trouve le service dans le répertoire des services
+              7. Le professionnel lui donne les nouvelles informations sur le service
+              8. L'agent envoie un requête pour mettre à jour les informations du service
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+              1a.1. Le professionnel se voit refuser l'accès au #GYM
+              1a.2. Le professionnel quitte, fin du CU
+
+              2a. Le numéro unique ne correspond pas à un dossier de professionnel.
+                2a.1 L'agent informe la personne que ce numéro unique ne correspond pas à un professionnel et demande de revenir avec le bon numéro unique
+
+              6a. Le service n'appartient pas au professionnel
+                6a.1. L'agent indique au professionnel qu'il n'est pas autorisé à modifier ce service
+                6a.2. Retour à l'étape 4
+
+              7a Le professionnel demande à l'agent de supprimer ce service
+                7a.1. L'agent envoie une requête pour supprimer le service
+                7a.2. L'agent confirme que le service a bien été supprimé
+
+              4a. Le système affiche "Aucun service offert"
+                4a.1. L'agent indique au professionnel qu'il ne fournit présentement aucun service
+
+          <span style="font-weight: bold;">Postconditions :</span> L'enregistrement de la séance de service est modifié dans le système
+      </pre></li></br>
+
+
+      <!-- 10. Confirmer seance -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Confirmer la présence à une séance de service
+          <span style="font-weight: bold;">But :</span> Confirmer la présence d'un membre à une séance de service et confirmer que le service a été fournis
+          <span style="font-weight: bold;">Préconditions :</span> être un membre (CU Inscription), être inscrit à une séance de service (CU Inscription à une séance de service), le système est disponbible
+          <span style="font-weight: bold;">Acteurs :</span> Membre (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Appel du CU Demande d'accès
+                  1.1. Le membre se voit octroyer l'accès au #GYM
+              2. L'agent demande les information sur la séance de service
+              3. Le membre donne les informations de la séance de service à l'agent
+              4. Appel du CU Consultation du répertoire de service
+              5. L'agent utilise la liste des séances offertes pour la même jour pour retrouver la séance en question
+              6. L'agent utilise le système pour sélectionner l'option <i>"confirmer la présence"</i>
+              7. L'agent demande le numéro du membre
+              8. L'agent entre dans le système le numéro du membre
+              9. Le système affiche le mot <i>Validé</i> à l'écran de l'agent
+              10. Le système crée un enregistrement qui indique que le service a été fourni sur le disque
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+              1a.1. Le membre se voit refuser l'accès au #GYM
+              1a.2. Fin du CU, départ du client
+
+              5a. La séance de service n'est pas dans la liste fournit et l'agent utilise le répertoire de services pour trouver la séance de services en question
+                  5a.1. L'agent contaste que la séance en question n'est pas donné pendant la journée en question
+                  5a.2. L'agent informe le membre de la date exacte où la séance de service sera offertes
+
+              6a. L'agent contaste que cette séance a été annulé. (n'est plus offerte)
+                  6a.1. L'agent informe le membre que cette séance a été annulé.
+
+              9a. Le système affiche <i>accès refusé</i> sur l'écran de l'agent
+                  9a.1. L'agent indique au membre qu'il ne peut assister à cette séance puisqu'il n'est pas encore inscrit
+                  9a.2. Appel du CU Inscription à une séance
+
+          <span style="font-weight: bold;">Postconditions :</span> Le système comprend le nouvel enregistrement crée
+      </pre></li></br>
+
+
+      <!-- 11. desinscrire seance -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Désinscription
+          <span style="font-weight: bold;">But :</span> Désinscrire le membre d'une séance de service
+          <span style="font-weight: bold;">Préconditions :</span> être un membre (CU Inscription), être inscrit à une séance de service (CU Inscription à une séance de service), le système est disponbible
+          <span style="font-weight: bold;">Acteurs :</span> Membre (principal), Agent (secondaire)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Appel du CU Demande d'accès
+                  1.1. Le membre se voit octroyer l'accès au #GYM
+              2. L'agent demande les information sur la séance de service
+              3. Le membre donne les informations de la séance de service à l'agent
+              4. Appel du CU Consultation du répertoire de service
+              5. L'agent utilise la liste des séances offertes pour la même jour pour retrouver la séance en question
+              6. L'agent utilise le système pour sélectionner l'option <i>"désinscription"</i>
+              7. L'agent demande le numéro du membre
+              8. L'agent entre dans le système le numéro du membre
+              9. Le système supprime l'inscription du membre à la séance de service
+
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+              1a.1. Le membre se voit refuser l'accès au #GYM
+              1a.2. Fin du CU, départ du client
+          <span style="font-weight: bold;">Postconditions :</span> Le système comprend le nouvel enregistrement crée
+      </pre></li></br>
+
+
+
+      <!-- 12. Suspension -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Suspension/rétablissement d'un membre
+          <span style="font-weight: bold;">But :</span> Interdire/rétablir l'accès au gym à un membre qui n'a/n'avait pas payé ses frais d'inscription
+          <span style="font-weight: bold;">Préconditions :</span> Le membre fait partie du système (CU Inscription), le système est disponible à 21 heure à chaque soir
+          <span style="font-weight: bold;">Acteurs :</span> Système informatique RnB (principal)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Le système informatique RnB met à jour les dossier des membres concernant les paiments d'adhésion
+              2. Le système informatique met à jour l'état de l'adhésion dans le dossier des membre (suspension/rétablissement du dossier)
+          <span style="font-weight: bold;">Scénarios alternatifs :</span> Aucun
+          <span style="font-weight: bold;">Postconditions :</span> Le système  reçoit les mise à jour concernant les dossiers des membres
+      </pre></li></br>
+
+
+      <!-- 13. Procédure comptable -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Procédure comptable
+          <span style="font-weight: bold;">But :</span> Créer les fichier TEF et le rapport de synthèse
+          <span style="font-weight: bold;">Préconditions :</span> Le système est disponbible le vendredi à minuit
+          <span style="font-weight: bold;">Acteurs :</span> Centre de données (principal)
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Appel du CU Production du rapport de synthèse
+              2. Pour chaque compte payable, le système génère un fichier de données de transfert électronique de fond (TEF)
+              3. Le système enregistre ces TEF sur le disque
+          <span style="font-weight: bold;">Scénarios alternatifs :</span>
+              2a. Il n'y a aucun compte payable cette semaine
+              2a.1 Le système ne produit aucun rapport et n'enregistre rien sur le disque
+          <span style="font-weight: bold;">Postconditions :</span> Les fichiers TEF sont crées dans le système
+      </pre></li></br>
+
+
+      <!-- 14. Production rapport -->
+      <li><pre style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Cas d'utilisation :</span> Production du rapport de synthèse
+          <span style="font-weight: bold;">But :</span> Créer le rapport de synthèse
+          <span style="font-weight: bold;">Préconditions :</span> Le système est disponible
+          <span style="font-weight: bold;">Acteurs :</span> Centre de données
+          <span style="font-weight: bold;">Scénario principal :</span>
+              1. Le système lit le fichier des services fournis de la semaine
+              2. Le système extrait les données utiles du fichier pour créer le rapport
+              3. Le système produit le rapport
+              4. Le système envoie le rapport au gérant
+          <span style="font-weight: bold;">Scénarios alternatifs :</span> Aucun
+          <span style="font-weight: bold;">Postconditions :</span> Le rapport de synthèse est crée
+      </pre></li></br>
+    </ol>
+
+    <h3>Risques :</h3>
+    <ol></br>
+      <!-- Risque 1 -->
+      <li></p><div style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Risque :</span> Perte de toutes les données du Centre de Données</br>
+          <span style="font-weight: bold;">Type :</span> Risque de volatilité</br>
+          <span style="font-weight: bold;">Sévérité :</span> Sévère</br>
+          <span style="font-weight: bold;">Description : </span> Il n'y a pas de base de données ni de système backup pour sauvegarder les profils des membres et professionnels du gym.
+          Donc, si le système sur lequel opère le Centre de Données tombe en panne, nous allons perdre toutes les
+          données sur nos membres et professionnels.</br>
+      </div><p></li></br>
+
+      <!-- Risque 2 -->
+      <li></p><div style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Risque :</span> Accès non autorisé au gym</br>
+          <span style="font-weight: bold;">Type :</span> Risque de sécurité</br>
+          <span style="font-weight: bold;">Sévérité :</span> Sévère</br>
+          <span style="font-weight: bold;">Description :</span> La seule étape d'identification d'un membre est la confirmation verbale de son numéro
+          unique lorsqu'il se présente à la réception. Cela pose plusieurs problèmes au niveau de la sécurité : aucun moyen de prévenir plusieurs clients
+          partageant un même numéro unique, ni d'éviter une fuite d'un numéro unique. En effet, lorsqu'un membre se présente à la réception et donne son numéro unique
+          verbalement à l'agent, les autres membres faisant la queue pour la réception peuvent possiblement l'entendre. On aurait donc des personnes membres / non membres
+          capables d'accéder au gym à l'aide du numéro de quelqu'un d'autre.</br>
+      </div><p></li></br>
+
+      <!-- Risque 3 -->
+      <li></p><div style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Risque :</span> Vérification des compétences des professinnels</br>
+          <span style="font-weight: bold;">Type :</span> Risque technique</br>
+          <span style="font-weight: bold;">Sévérité : </span> Modéré</br>
+          <span style="font-weight: bold;">Description :</span> Les professionnels qui adhèrent au gym peuvent donner les services qu'ils veulent. De ce fait, ils peuvent
+          donner des services dans des domaines qu'ils ne maitrisent pas.</br>
+      </div><p></li></br>
+      
+      <!-- Risque 4 -->
+      <li></p><div style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Risque :</span> Impossible de récupérer un numéro unique si le client le perd</br>
+          <span style="font-weight: bold;">Type :</span> Risque technique</br>
+          <span style="font-weight: bold;">Sévérité :</span> Modéré</br>
+          <span style="font-weight: bold;">Description :</span> Si le client perd son numéro unique, il est impossible de le retrouver car c'est le numéro unique 
+      est le seul moyen utilisé pour l'identifier.</br>
+      </div><p></li></br>
+
+      <!-- Risque 5 -->
+      <li></p><div style="font-family: 'Open Sans', sans-serif;">
+          <span style="font-weight: bold;">Risque :</span> Temps d'attente trop élevé</br>
+          <span style="font-weight: bold;">Type :</span> Risque de performance</br>
+          <span style="font-weight: bold;">Sévérité :</span> Obstacle mineur</br>
+          <span style="font-weight: bold;">Description :</span> Puisque toutes les informations sur les membres, les professionnels et les inscriptions
+          sont enregistrées sur le disque et non une base de données, le système peut mettre beaucoup de temps pour trouver une information et envoyer
+          une réponse à l'agent</br>
+      </div><p></li></br>
+    </ol>
+
+    <h3>Exigences non-fonctionnelles :</h3>
+    <ul>
+      <li>
+          Une recherche/requête au système (Centre de Données, Répertoire des Services, etc.) doit prendre moins de 1 sec
+      </li></br>
+
+      <li>
+          Le système doit être disponible 99.999% du temps d'ouverture de la salle de gym
+      </li></br>
+
+      <li>
+          La liste des séances et la liste des membres inscrits à une séance doivent être lisibles à 2m de l'écran
+      </li></br>
+
+      <li>
+          Lors des tests d'acceptation, les interactions avec le système doivent être simulées sur une console JAVA en tapant sur les touches du clavier
+      </li></br>
+      
+      <li>
+          Le système doit supporter et performer raisonnablement pour au moins 5000 membres
+      </li></br>
+    </ul>
+
+    <!----------------------------- WF 2 ------------------------------->
+    <h2>Workflow 2 : Analyse</h2>
+
+    <h3>Courte analyse :</h3>
+    <div style="margin:auto; text-align:justify">
+      Il faut informatiser le projet au complet et il sera en mode interactif.
+      Les données, à savoir les membres/professionnels, les inscriptions et les
+      séances seront stockées dans différents fichiers.
+      Le matériel nécessaire est un ordinateur, avec un
+      JDK Java compatible, avec écran et clavier, et de la mémoire suffisante
+      pour l'échelle d'utilisation et le nombre de clients de #GYM.
+      Le système est complet et n'intéragit qu'avec l'utilisateur et ses données
+      internes.
+      Le système sera implémenté en Java et sera une application en ligne de
+      commande, tel qu'indiqué dans la documentation. Les interactions avec
+      les utilisateurs se feront à travers les touches du clavier et d'une
+      console Java.
+    </div></br>
+
+    <h3>Diagrammes d'activités UML :</h3>
+    <p>Voici le <a href="Analyse/Diagrammes_activites-corrige.vpp">lien</a> vers le projet VP contenant les 5 diagrammes d'activités demandés. Les images suivent : </p>
+    <h4>Diagramme d'activité 1: Principal</h4>
+    <img src="Analyse/Images/DA1-Diagramme principal.jpg" alt="DA1-Principal" class="diag">
+    <h4>Diagramme d'activité 2: Gestion client</h4>
+    <img src="Analyse/Images/DA2-Gestion client.jpg" alt="DA2-Gestion client" class="diag">
+    <h4>Diagramme d'activité 3: Gestion services</h4>
+    <img src="Analyse/Images/DA3-Gestion service.jpg" alt="DA3-Gestion séance" class="diag">
+    <h4>Diagramme d'activité 4: Inscription séance</h4>
+    <img src="Analyse/Images/DA4-Inscription séance.jpg" alt="DA4-Inscription séance" class="diag">
+    <h4>Diagramme d'activité 5: Confirmer séance</h4>
+    <img src="Analyse/Images/DA5-Confirmer séance.jpg" alt="DA5-Confirmer séance" class="diag">
+    <h4>Diagramme d'activité 6: Procédure comptable</h4>
+    <img src="Analyse/Images/DA6-Procédure comptable.jpg" alt="DA6-Procédure comptable" class="diag">
+    <h4>Diagramme d'activité 7: Mise à jour statut membre</h4>
+    <img src="Analyse/Images/DA7-Mise à jour statut membre.jpg" alt="DA7-Mise à jour statut membre" class="diag">
+
+    <!----------------------------- WF 3 ------------------------------->
+    <h2>Workflow 3 : Conception</h2>
+
+    <h3>Diagramme de classes :</h3>
+    <p>Voici le <a href="Conception/diagramme de classe.vpp">lien</a> vers le projet VP contenant le diagramme de classe demandé.</p>
+    <h4>Diagramme de classe :</h4>
+    <img src="Conception/Images/diagramme de classe.jpg" alt="Diagramme de classe" class="diag-class">
+
+    <h3>Diagrammes de séquences :</h3>
+    <p>Voici le <a href="Conception/Diagrammes de sequences.vpp">lien</a> vers le projet VP contenant les 5 diagrammes de séquence demandés. </p>
+
+    <h4>Diagramme de séquence 1: Ajouter/MAJ/Supprimer un membre</h4>
+    <img src="Conception/Images/D1 - Ajouter_MAJ_Supprimer membre.jpg" alt="DA1-Gestion client" class="diag">
+    <h4>Diagramme de séquence 2: Ajouter/MAJ/Supprimer un service</h4>
+    <img src="Conception/Images/D2 - Ajouter_MAJ_Supprimer un service.jpg" alt="DA2-Gestion service" class="diag">
+    <h4>Diagramme de séquence 3: Inscription séance</h4>
+    <img src="Conception/Images/D3 - Inscription séance.jpg" alt="DA3-Inscription séance" class="diag">
+    <h4>Diagramme de séquence 4: Confirmation séance</h4>
+    <img src="Conception/Images/D4  - Confirmer présence à une séance.jpg" alt="DA4-Confirmation séance" class="diag">
+    <h4>Diagramme de séquence 5: Procédure comptable</h4>
+    <img src="Conception/Images/D5 - Procédure comptable.jpg" alt="DA5-Procédure comptable" class="diag">
+
+
+    <!----------------------------- WF 4 ------------------------------->
+    <h2>Workflow 4 : Implémentation</h2>
+
+    <!--Mettre le fichier JAR dans le dossier Implementation-->
+    <p>Voici le <a href="Implementation/GYM.jar">fichier JAR exécutable</a> de notre programme.</p>
+
+    <!----------------------------- WF 5 ------------------------------->
+    <h2>Workflow 5 : Tests</h2>
+
+    <p>Voici les images des différents tests complétés, issues de JUnit :</p>
+    <h4>Test 1 : ajouterPro(), test 2 : ajouterMembre(), test 3 : validerNumero()</h4>
+    <img src = "Tests/Test1-2-3.png" alt="Image des test 1, 2, 3" class="diag">
+    <h4>Test 4 : creerService()</h4>
+    <img src = "Tests/Test4.png" alt="Image du test 4" class="diag">
+    <h4>Test 5 : inscriptionSeance()</h4>
+    <img src = "Tests/Test5.png" alt="Image du test 5" class="diag">
+    <h4>Test 6 : getSeancesH()</h4>
+    <img src = "Tests/Test6.png" alt="Image du test 6" class="diag">
+
+    <!----------------------------- WF 5 ------------------------------->
+    <h2>Workflow 5 : Documentation</h2>
+
+    <h3>Manuel de l'utilisateur :</h3>
+    <p>Voici le lien vers le <a href="Documentation/Manuel_de_l_utilisateur__GYM.pdf">Manuel de l'utilisateur - #GYM</a>.</p>
+
+    <h3>JavaDoc :</h3>
+    <p>Voici le lien vers le <a href="Documentation/JavaDoc/GYM/package-summary.html">résumé</a> du package "GYM" .</p>
+
+  </body>
+</html>
